@@ -1,0 +1,41 @@
+{% extends 'portfolio/home.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <div class="text-center mb-4">
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+            <p>{{ user.email }} | {{ user.mobile_number }}</p>
+        </div>
+        
+        <hr>
+
+        <h3>Profile Summary</h3>
+        <p>{{ user.profile_summary }}</p>
+
+        <h3>Skills</h3>
+        <ul>
+            {% for skill in user.skills.all %}
+                <li>{{ skill.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Education</h3>
+        <ul>
+            {% for edu in user.education_set.all %}
+                <li><strong>{{ edu.degree }}</strong> - {{ edu.institution }} ({{ edu.year }})</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Experience</h3>
+        <ul>
+            {% for exp in user.experience_set.all %}
+                <li>
+                    <strong>{{ exp.position }}</strong> at {{ exp.company }} ({{ exp.start_date }} - {{ exp.end_date|default:"Present" }})
+                    <p>{{ exp.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

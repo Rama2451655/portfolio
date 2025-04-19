@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h2>About Me</h2>
+
+    <h3>Skills</h3>
+    <ul>
+        {% for skill in skills %}
+            <li>{{ skill.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Education</h3>
+    <ul>
+        {% for edu in education %}
+            <li>{{ edu.degree }} at {{ edu.institution }} ({{ edu.year }})</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Certifications</h3>
+    <ul>
+        {% for cert in certs %}
+            <li>
+                {{ cert.name }} - {{ cert.issuer }}
+                {% if cert.link %}
+                    <a href="{{ cert.link }}" target="_blank">View</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
